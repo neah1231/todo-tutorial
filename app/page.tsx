@@ -11,7 +11,7 @@ export default function Page() {
             className="bg-gradient-to-r from-primary via-pink-400 to-primary bg-clip-text text-6xl font-bold tracking-tight text-transparent italic"
             style={{ fontFamily: "var(--font-display), serif" }}
           >
-            Todo
+            오늘의 할 일
           </h1>
           <p className="flex items-center gap-2 text-sm text-muted-foreground">
             <span aria-hidden className="twinkle text-primary">
