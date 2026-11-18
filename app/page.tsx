@@ -1,3 +1,5 @@
+import Link from "next/link"
+
 import { Bow } from "@/components/bow"
 import { TodoApp } from "@/components/todo-app"
 
@@ -27,6 +29,12 @@ export default function Page() {
           </p>
         </header>
         <TodoApp />
+        <Link
+          href="/usage"
+          className="self-center text-sm text-muted-foreground underline-offset-4 hover:text-primary hover:underline"
+        >
+          사용법 보기
+        </Link>
       </main>
     </div>
   )
