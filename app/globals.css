@@ -48,28 +48,28 @@
 }
 
 :root {
-    --card: oklch(1 0 0);
-    --card-foreground: oklch(0.147 0.004 49.3);
+    --card: oklch(1 0.004 355);
+    --card-foreground: oklch(0.28 0.05 345);
     --popover: oklch(1 0 0);
     --popover-foreground: oklch(0.147 0.004 49.3);
-    --primary: oklch(0.518 0.253 323.949);
-    --primary-foreground: oklch(0.977 0.017 320.058);
+    --primary: oklch(0.64 0.2 355);
+    --primary-foreground: oklch(0.99 0.01 350);
     --secondary: oklch(0.967 0.001 286.375);
     --secondary-foreground: oklch(0.21 0.006 285.885);
-    --muted: oklch(0.96 0.002 17.2);
-    --muted-foreground: oklch(0.547 0.021 43.1);
-    --accent: oklch(0.518 0.253 323.949);
-    --accent-foreground: oklch(0.977 0.017 320.058);
+    --muted: oklch(0.955 0.025 355);
+    --muted-foreground: oklch(0.5 0.06 350);
+    --accent: oklch(0.94 0.04 355);
+    --accent-foreground: oklch(0.4 0.12 355);
     --destructive: oklch(0.577 0.245 27.325);
-    --border: oklch(0.922 0.005 34.3);
-    --input: oklch(0.922 0.005 34.3);
-    --ring: oklch(0.714 0.014 41.2);
+    --border: oklch(0.9 0.05 355);
+    --input: oklch(0.9 0.05 355);
+    --ring: oklch(0.72 0.14 355);
     --chart-1: oklch(0.865 0.127 207.078);
     --chart-2: oklch(0.715 0.143 215.221);
     --chart-3: oklch(0.609 0.126 221.723);
     --chart-4: oklch(0.52 0.105 223.128);
     --chart-5: oklch(0.45 0.085 224.283);
-    --radius: 0.625rem;
+    --radius: 1rem;
     --sidebar: oklch(0.986 0.002 67.8);
     --sidebar-foreground: oklch(0.147 0.004 49.3);
     --sidebar-primary: oklch(0.591 0.293 322.896);
@@ -78,29 +78,29 @@
     --sidebar-accent-foreground: oklch(0.214 0.009 43.1);
     --sidebar-border: oklch(0.922 0.005 34.3);
     --sidebar-ring: oklch(0.714 0.014 41.2);
-    --background: oklch(1 0 0);
-    --foreground: oklch(0.147 0.004 49.3);
+    --background: oklch(0.982 0.014 355);
+    --foreground: oklch(0.28 0.05 345);
 }
 
 .dark {
-    --background: oklch(0.147 0.004 49.3);
+    --background: oklch(0.2 0.03 340);
     --foreground: oklch(0.986 0.002 67.8);
-    --card: oklch(0.214 0.009 43.1);
+    --card: oklch(0.25 0.035 340);
     --card-foreground: oklch(0.986 0.002 67.8);
     --popover: oklch(0.214 0.009 43.1);
     --popover-foreground: oklch(0.986 0.002 67.8);
-    --primary: oklch(0.452 0.211 324.591);
-    --primary-foreground: oklch(0.977 0.017 320.058);
+    --primary: oklch(0.72 0.17 355);
+    --primary-foreground: oklch(0.2 0.03 340);
     --secondary: oklch(0.274 0.006 286.033);
     --secondary-foreground: oklch(0.985 0 0);
-    --muted: oklch(0.268 0.011 36.5);
-    --muted-foreground: oklch(0.714 0.014 41.2);
-    --accent: oklch(0.452 0.211 324.591);
-    --accent-foreground: oklch(0.977 0.017 320.058);
+    --muted: oklch(0.3 0.03 340);
+    --muted-foreground: oklch(0.75 0.05 350);
+    --accent: oklch(0.32 0.05 345);
+    --accent-foreground: oklch(0.95 0.02 350);
     --destructive: oklch(0.704 0.191 22.216);
     --border: oklch(1 0 0 / 10%);
     --input: oklch(1 0 0 / 15%);
-    --ring: oklch(0.547 0.021 43.1);
+    --ring: oklch(0.6 0.12 355);
     --chart-1: oklch(0.865 0.127 207.078);
     --chart-2: oklch(0.715 0.143 215.221);
     --chart-3: oklch(0.609 0.126 221.723);
@@ -126,4 +126,59 @@
   html {
     @apply font-sans;
     }
+}
+/* 공주풍 장식: 레이스 가장자리, 레이스 도트 배경, 반짝임 */
+.lace-top,
+.lace-bottom {
+  height: 14px;
+  background-repeat: repeat-x;
+  background-size: 18px 14px;
+}
+
+.lace-top {
+  background-image: radial-gradient(
+    circle at 50% 0,
+    color-mix(in oklch, var(--primary) 38%, transparent) 0 6px,
+    transparent 6.5px
+  );
+}
+
+.lace-bottom {
+  background-image: radial-gradient(
+    circle at 50% 100%,
+    color-mix(in oklch, var(--primary) 38%, transparent) 0 6px,
+    transparent 6.5px
+  );
+}
+
+.lace-dots {
+  background-image: radial-gradient(
+    circle,
+    color-mix(in oklch, var(--primary) 22%, transparent) 1.5px,
+    transparent 2px
+  );
+  background-size: 24px 24px;
+}
+
+@keyframes twinkle {
+  0%,
+  100% {
+    opacity: 0.35;
+    transform: scale(0.85) rotate(0deg);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.15) rotate(20deg);
+  }
+}
+
+.twinkle {
+  display: inline-block;
+  animation: twinkle 2.4s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .twinkle {
+    animation: none;
+  }
 }

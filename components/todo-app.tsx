@@ -57,77 +57,81 @@ export function TodoApp() {
   )
 
   return (
-    <div className="flex flex-col gap-4 rounded-3xl border bg-card/80 p-5 shadow-xl ring-1 shadow-primary/5 ring-primary/5 backdrop-blur">
-      <Input
-        value={draft}
-        onChange={(e) => setDraft(e.target.value)}
-        onKeyDown={handleKeyDown}
-        placeholder="할 일을 입력하고 Enter"
-        aria-label="새 할 일"
-        autoFocus
-        className="h-11 rounded-xl px-4 text-base shadow-sm"
-      />
-      <Tabs value={filter} onValueChange={(v) => setFilter(v as Filter)}>
-        <TabsList aria-label="필터" className="w-full">
-          {FILTERS.map(({ value, label }) => (
-            <TabsTrigger key={value} value={value} className="flex-1">
-              {label}
-            </TabsTrigger>
-          ))}
-        </TabsList>
-      </Tabs>
-      {todos.length > 0 && (
-        <div
-          aria-hidden
-          className="h-1.5 overflow-hidden rounded-full bg-muted"
-        >
+    <div className="overflow-hidden rounded-3xl border-2 border-primary/25 bg-card/90 shadow-xl shadow-primary/15 backdrop-blur">
+      <div aria-hidden className="lace-top" />
+      <div className="flex flex-col gap-4 p-5">
+        <Input
+          value={draft}
+          onChange={(e) => setDraft(e.target.value)}
+          onKeyDown={handleKeyDown}
+          placeholder="할 일을 입력하고 Enter"
+          aria-label="새 할 일"
+          autoFocus
+          className="h-12 rounded-full border-primary/30 bg-background px-5 text-base shadow-sm"
+        />
+        <Tabs value={filter} onValueChange={(v) => setFilter(v as Filter)}>
+          <TabsList aria-label="필터" className="w-full">
+            {FILTERS.map(({ value, label }) => (
+              <TabsTrigger key={value} value={value} className="flex-1">
+                {label}
+              </TabsTrigger>
+            ))}
+          </TabsList>
+        </Tabs>
+        {todos.length > 0 && (
           <div
-            className="h-full rounded-full bg-gradient-to-r from-primary to-pink-500 transition-all duration-500"
-            style={{ width: `${(completedCount / todos.length) * 100}%` }}
-          />
-        </div>
-      )}
-      {visibleTodos.length === 0 ? (
-        <div className="flex flex-col items-center gap-1 py-10 text-center">
-          <span aria-hidden className="text-3xl">
-            {todos.length === 0 ? "📝" : "🔍"}
-          </span>
-          <p className="text-sm text-muted-foreground">
-            {todos.length === 0
-              ? "할 일이 없습니다"
-              : "해당하는 할 일이 없습니다"}
-          </p>
-        </div>
-      ) : (
-        <ul className="flex flex-col gap-2">
-          {visibleTodos.map((todo) => (
-            <TodoItem
-              key={todo.id}
-              todo={todo}
-              onToggle={() => toggleTodo(todo.id)}
-              onDelete={() => deleteTodo(todo.id)}
-              onEdit={(text) => editTodo(todo.id, text)}
-            />
-          ))}
-        </ul>
-      )}
-      <div className="flex items-center justify-between gap-2">
-        <p className="text-xs text-muted-foreground">
-          {canSave
-            ? "할 일은 이 브라우저에 저장됩니다"
-            : "이 브라우저에서는 할 일이 저장되지 않습니다"}
-        </p>
-        {completedCount > 0 && (
-          <Button
-            variant="ghost"
-            size="sm"
-            onClick={clearCompleted}
-            className="text-muted-foreground hover:text-destructive"
+            aria-hidden
+            className="h-1.5 overflow-hidden rounded-full bg-muted"
           >
-            완료한 일 지우기 ({completedCount})
-          </Button>
+            <div
+              className="h-full rounded-full bg-gradient-to-r from-pink-300 to-primary transition-all duration-500"
+              style={{ width: `${(completedCount / todos.length) * 100}%` }}
+            />
+          </div>
         )}
+        {visibleTodos.length === 0 ? (
+          <div className="flex flex-col items-center gap-1 py-10 text-center">
+            <span aria-hidden className="text-3xl">
+              {todos.length === 0 ? "🎀" : "🔍"}
+            </span>
+            <p className="text-sm text-muted-foreground">
+              {todos.length === 0
+                ? "할 일이 없습니다"
+                : "해당하는 할 일이 없습니다"}
+            </p>
+          </div>
+        ) : (
+          <ul className="flex flex-col gap-2.5">
+            {visibleTodos.map((todo) => (
+              <TodoItem
+                key={todo.id}
+                todo={todo}
+                onToggle={() => toggleTodo(todo.id)}
+                onDelete={() => deleteTodo(todo.id)}
+                onEdit={(text) => editTodo(todo.id, text)}
+              />
+            ))}
+          </ul>
+        )}
+        <div className="flex items-center justify-between gap-2">
+          <p className="text-xs text-muted-foreground">
+            {canSave
+              ? "할 일은 이 브라우저에 저장됩니다"
+              : "이 브라우저에서는 할 일이 저장되지 않습니다"}
+          </p>
+          {completedCount > 0 && (
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={clearCompleted}
+              className="text-muted-foreground hover:text-destructive"
+            >
+              완료한 일 지우기 ({completedCount})
+            </Button>
+          )}
+        </div>
       </div>
+      <div aria-hidden className="lace-bottom" />
     </div>
   )
 }
@@ -174,11 +178,12 @@ function TodoItem({
   }
 
   return (
-    <li className="group flex min-h-12 items-center gap-3 rounded-xl border bg-background px-3 shadow-sm transition-all hover:-translate-y-px hover:border-primary/40 hover:shadow-md">
+    <li className="group flex min-h-12 items-center gap-3 rounded-full border-2 border-primary/20 bg-background px-4 shadow-sm transition-all hover:-translate-y-px hover:border-primary/50 hover:shadow-md hover:shadow-primary/10">
       <Checkbox
         checked={todo.completed}
         onCheckedChange={onToggle}
         aria-label={`${todo.text} 완료`}
+        className="size-5 rounded-full"
       />
       {editing ? (
         <Input
