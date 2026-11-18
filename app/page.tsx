@@ -3,7 +3,7 @@ import { TodoApp } from "@/components/todo-app"
 
 export default function Page() {
   return (
-    <div className="lace-dots min-h-svh bg-gradient-to-b from-primary/20 via-background to-primary/10">
+    <div className="lace-dots min-h-svh bg-white dark:bg-background">
       <main className="mx-auto flex w-full max-w-md flex-col gap-6 px-5 pt-10 pb-12">
         <header className="flex flex-col items-center gap-1 text-center">
           <Bow className="size-20 drop-shadow-md" />

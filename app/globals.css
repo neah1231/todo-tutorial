@@ -154,7 +154,7 @@
 .lace-dots {
   background-image: radial-gradient(
     circle,
-    color-mix(in oklch, var(--primary) 22%, transparent) 1.5px,
+    color-mix(in oklch, var(--primary) 35%, transparent) 1.5px,
     transparent 2px
   );
   background-size: 24px 24px;
